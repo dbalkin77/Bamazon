@@ -1,0 +1,20 @@
+// function createProduct() {
+//     const query = connection.query(
+//         'insert into products set ?',
+//         {
+//             product_name : 'shake weight',
+//             department_name: 'fitness',
+//             price: 19.99,
+//             stock_qty: 999
+//         },
+//         function(err, res) {
+//             if (err) {
+//                 throw err;
+//             }
+//             else {
+//             console.log(res.affectRows + ' product inserted');
+//             }
+//         }
+//     )
+//     createProduct();
+// }

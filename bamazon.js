@@ -1,0 +1,37 @@
+const mysql = require('mysql');
+const inquirer = require('inquirer');
+const connection = mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: '',
+    database: 'bamazondb'
+});
+
+connection.connect(function(err){
+if (err) throw err;
+console.log(connection.threadId);
+
+connection.query("SELECT * FROM products", function(err, res) {
+    if (err) throw err;cd 
+    console.log(res);
+    productPurchase();
+    });
+});
+
+function productPurchase () {
+    inquirer.prompt([
+        {
+           name: 'purchase',
+           message: 'What is the ID of the product you would like to purchase?', 
+        },
+        {
+            name: 'quantity',
+            message: 'How many would you like to purchase?'
+        }
+    ]).then(function(data){
+        console.log(data.purchase + ' ' + data.quantity);
+    })
+}
+
+
