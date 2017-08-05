@@ -15,6 +15,7 @@ introduction();
 
 });
 
+// Function that prompts user to either view products for sale, view low inventory, add to inventory, or add new product
 function introduction () {
     inquirer.prompt([
         {
@@ -24,6 +25,17 @@ function introduction () {
             choices: ['View Products for Sale', 'View Low Inventory', 'Add to Inventory', 'Add New Product']
         }
     ]).then(function(answer){
-        console.log(answer);
+        if (answer.selection === 'View Products for Sale') {
+            viewProducts();
+        }
+        else if (answer.selection === 'View Low Inventory') {
+            viewLowInventory();
+        }
+        else if (answer.selection === 'Add to Inventory') {
+            addToInventory();
+        }
+        else 
+            addNewProduct();
     });
 }
+
