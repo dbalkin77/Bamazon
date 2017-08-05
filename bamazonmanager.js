@@ -11,10 +11,19 @@ const connection = mysql.createConnection({
 connection.connect(function(err){
 if (err) throw err;
 console.log(connection.threadId);
+introduction();
 
-connection.query("SELECT * FROM products", function(err, res) {
-    if (err) throw err;
-    console.log(res);
-    productPurchase();
-    });
 });
+
+function introduction () {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'selection',
+            message: 'What would you like to do?',
+            choices: ['View Products for Sale', 'View Low Inventory', 'Add to Inventory', 'Add New Product']
+        }
+    ]).then(function(answer){
+        console.log(answer);
+    });
+}
