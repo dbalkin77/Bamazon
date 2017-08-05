@@ -39,6 +39,7 @@ function introduction () {
     });
 }
 
+// View Products Function //////////////////////////////////////////////////
 function viewProducts() {
     connection.query("SELECT * FROM products", function(err, res) {
     if (err) throw err;
@@ -47,3 +48,12 @@ function viewProducts() {
     });
 }
 
+// View Low Inventory //////////////////////////////////////////////////
+function viewLowInventory() {
+    var query = connection.query(
+        "SELECT * FROM products WHERE stock_qty<5", function(err, res) {
+            if (err) throw err;
+            console.log(res);
+        }
+    )
+}
