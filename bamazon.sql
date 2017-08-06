@@ -1,4 +1,4 @@
-CREATE TABLE `products` (
+  CREATE TABLE `products` (
   `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(100) DEFAULT NULL,
   `department_name` varchar(100) DEFAULT NULL,

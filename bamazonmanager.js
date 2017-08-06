@@ -57,3 +57,33 @@ function viewLowInventory() {
         }
     )
 }
+
+// Add to Inventory //////////////////////////////////////////////////
+function addNewProduct () {
+    inquirer.prompt([
+        {
+            name: 'product',
+            message: 'Name of product you would like to add to inventory'
+        },
+        {
+            name: 'department',
+            message: 'What department should item be added to?'
+        },
+        {
+            name: 'price',
+            message: 'Add price of item'
+        },
+        {
+            name: 'quantity',
+            message: 'Add quanity of item'
+        }
+    ]).then(function(data){
+        console.log(data);
+        connection.query('INSERT INTO products (product_name, department_name, price, stock_qty) VALUES (?,?,?,?)',
+        [data.product, data.department, data.price, data.quantity],
+        function (err, res) {
+            if (err) throw err;
+            console.log(res.affectedrows + ' rows affected');
+        });
+    })
+}
