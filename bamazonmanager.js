@@ -58,7 +58,32 @@ function viewLowInventory() {
     )
 }
 
+
 // Add to Inventory //////////////////////////////////////////////////
+function addToInventory () {
+    inquirer.prompt([
+        {
+            name: 'item_id',
+            message: 'What item id would you like to add to?'
+        },
+        {
+            name: 'quantity',
+            message: 'How many would you like to add?'
+        },
+    ]).then(function(data){
+        console.log(data);
+        connection.query(`SELECT * FROM products WHERE item_id=${data.item_id}`, function(err, item){
+            if (err) throw err;
+            connection.query('UPDATE products SET stock_qty=? WHERE item_id=?',
+            [item[0].stock_qty + Number(data.quantity), data.item_id
+            ])
+            console.log('quantity has been updated!');
+            introduction();
+        })
+    })
+}
+
+// Add to New Product //////////////////////////////////////////////////
 function addNewProduct () {
     inquirer.prompt([
         {
@@ -84,6 +109,7 @@ function addNewProduct () {
         function (err, res) {
             if (err) throw err;
             console.log(res.affectedrows + ' rows affected');
+            introduction();
         });
     })
 }
