@@ -54,6 +54,7 @@ function viewLowInventory() {
         "SELECT * FROM products WHERE stock_qty<5", function(err, res) {
             if (err) throw err;
             console.log(res);
+            introduction();
         }
     )
 }
